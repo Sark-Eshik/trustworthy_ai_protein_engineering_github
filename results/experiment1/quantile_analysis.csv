@@ -1,0 +1,4 @@
+subset,count,mean_combined_sparsity,mean_antisymmetry_error
+Lowest 10% Sparsity (Dense),5,0.2682040653796316,0.2853999999999999
+Highest 10% Sparsity (Sparse),5,0.5938004556481102,0.6606
+Difference (Sparse - Dense),5,0.32559639026847864,0.3752000000000001

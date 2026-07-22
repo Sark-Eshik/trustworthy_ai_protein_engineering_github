@@ -1,0 +1,10 @@
+{
+    "checkpoint_name": "infra_diagnostic",
+    "saved_at": "2026-07-15T11:31:05.993554",
+    "state": {
+        "completed_step": 3,
+        "total_steps": 10,
+        "active_dataset": "megascale_d",
+        "processed_records": 15420
+    }
+}

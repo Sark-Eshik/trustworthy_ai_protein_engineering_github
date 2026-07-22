@@ -1,0 +1,19 @@
+# configs/validation.yaml
+hardware:
+  cpu_count: 8
+  ram_limit_gb: 32.0
+  gpu_enabled: true
+
+logging:
+  level: "INFO"
+  log_to_file: true
+  log_to_console: true
+
+experiment:
+  enabled: true
+  tracker_dir: "results/experiment_tracker"
+
+datasets:
+  megascale_d_path: "data/raw/megascale_d/megascale_d.parquet"
+  protein_sequences_path: "data/raw/sequences/protein_sequences.parquet"
+  protein_structures_path: "data/raw/structures/protein_structures.parquet"

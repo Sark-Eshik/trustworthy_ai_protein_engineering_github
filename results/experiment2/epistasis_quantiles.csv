@@ -1,0 +1,4 @@
+subset,count,mean_combined_sparsity,mean_epistasis_error
+Lowest 10% Sparsity (Dense),36,0.32858489853503065,0.2261388888888889
+Highest 10% Sparsity (Sparse),36,0.4868524999600406,0.42350000000000004
+Difference (Sparse - Dense),36,0.15826760142500995,0.19736111111111115

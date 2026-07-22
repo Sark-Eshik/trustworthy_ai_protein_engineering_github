@@ -1,0 +1,3 @@
+metric,coefficient,p_value
+Pearson Correlation (r),0.3265712481339219,0.013163137158522393
+Spearman Rank Correlation (rho),0.09208031533947088,0.4957203364966158

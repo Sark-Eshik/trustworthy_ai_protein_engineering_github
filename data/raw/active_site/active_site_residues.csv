@@ -1,0 +1,6 @@
+residue_number,residue_name,functional_role,literature_source
+155,Asp,Catalytic Proton Acceptor,literature_source_A
+263,His,Thiamine Pyrophosphate Binding Coordinator,literature_source_B
+340,Glu,Cofactor Chelating Residue,literature_source_C
+445,Arg,Phosphate Substrate Stabilizer,literature_source_D
+500,Lys,Intermediate Stabilizer,literature_source_E

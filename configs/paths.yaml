@@ -1,0 +1,18 @@
+# configs/paths.yaml
+paths:
+  configs_dir: "configs"
+  data_dir: "data"
+  docs_dir: "docs"
+  notebooks_dir: "notebooks"
+  outputs_dir: "outputs"
+  reports_dir: "reports"
+  logs_dir: "logs"
+  checkpoints_dir: "checkpoints"
+  models_dir: "models"
+  results_dir: "results"
+  tests_dir: "tests"
+  figures_dir: "figures"
+  papers_dir: "papers"
+  science_fair_dir: "science_fair"
+  presentations_dir: "presentations"
+  release_dir: "release"
