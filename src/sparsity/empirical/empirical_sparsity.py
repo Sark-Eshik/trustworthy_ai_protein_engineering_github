@@ -257,3 +257,18 @@ class EmpiricalSparsity:
             Paths to generated parquet, summary CSV, and distribution plot.
         """
         return self.generate_outputs(df, output_dir)
+def main():
+    parser = argparse.ArgumentParser(description="Empirical Sparsity Calculator")
+    parser.add_argument("--input", required=True, help="Path to megascale_d.parquet")
+    parser.add_argument("--output", required=True, help="Directory to save results")
+    args = parser.parse_args()
+
+    es = EmpiricalSparsity(config_path="configs")
+    df = es.load_counts(args.input)
+    result = es.calculate(df)
+    es.write_output(result, args.output)
+
+
+if __name__ == "__main__":
+    main()
+
