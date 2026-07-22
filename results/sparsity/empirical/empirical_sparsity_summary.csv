@@ -1,0 +1,10 @@
+metric,value
+total_mutations,57.0
+total_observations,16.0
+min_count,0.0
+max_count,1.0
+mean_count,0.28773532809425406
+mean_sparsity,0.9824561403508771
+median_sparsity,0.9932440862515446
+min_sparsity,0.8832052369830105
+max_sparsity,0.9988259982263198

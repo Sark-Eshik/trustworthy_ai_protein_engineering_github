@@ -4903,3 +4903,119 @@
 2026-07-22 12:27:24 [ERROR] empirical_validation: Value range constraints violated: ["Column 'empirical_sparsity' range violation: 2 value(s) outside [0.0, 1.0] bounds. Observed range: [-0.5, 1.2]."]
 2026-07-22 12:27:24 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_validation_scie0/invalid_order.parquet
 2026-07-22 12:27:24 [ERROR] empirical_validation: Scientific anomaly: Mutation with count 10 has lower sparsity (0.1) than mutation with count 100 (0.9).
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Loading mutation counts from parquet: data/raw/megascale_d/megascale_d.parquet
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Successfully loaded and validated 57 mutation records.
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Saving outputs to directory: results/sparsity/empirical
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Wrote core parquet output: results/sparsity/empirical/empirical_sparsity.parquet
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Wrote summary CSV: results/sparsity/empirical/empirical_sparsity_summary.csv
+2026-07-22 12:38:57 [INFO] empirical_sparsity: Wrote distribution plot: results/sparsity/empirical/empirical_distribution.png
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Loading mutation counts from parquet: data/raw/megascale_d/megascale_d.parquet
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Successfully loaded and validated 57 mutation records.
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Saving outputs to directory: results/sparsity/empirical
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Wrote core parquet output: results/sparsity/empirical/empirical_sparsity.parquet
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Wrote summary CSV: results/sparsity/empirical/empirical_sparsity_summary.csv
+2026-07-22 12:39:11 [INFO] empirical_sparsity: Wrote distribution plot: results/sparsity/empirical/empirical_distribution.png
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:39:17 [WARNING] empirical_sparsity: Total observations count is zero. Defaulting frequencies to 0.0.
+2026-07-22 12:39:17 [ERROR] empirical_sparsity: Input file not found at: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_load_counts_validation_fa0/nonexistent.parquet
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_load_counts_validation_fa0/bad_cols.parquet
+2026-07-22 12:39:17 [ERROR] empirical_sparsity: Missing required column in input counts: 'mutation_id'
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_load_counts_validation_fa0/nulls.parquet
+2026-07-22 12:39:17 [ERROR] empirical_sparsity: Column 'experimental_ddg' contains 1 null/missing value(s).
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_load_counts_validation_fa0/dups.parquet
+2026-07-22 12:39:17 [ERROR] empirical_sparsity: Column 'mutation_id' contains 1 duplicate mutation ID(s).
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_sparsity_output0/counts.parquet
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Successfully loaded and validated 3 mutation records.
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Saving outputs to directory: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_sparsity_output0/results
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Wrote core parquet output: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_sparsity_output0/results/empirical_sparsity.parquet
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Wrote summary CSV: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_sparsity_output0/results/empirical_sparsity_summary.csv
+2026-07-22 12:39:17 [INFO] empirical_sparsity: Wrote distribution plot: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_sparsity_output0/results/empirical_distribution.png
+2026-07-22 12:39:17 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_sparsity_output0/results/empirical_sparsity.parquet
+2026-07-22 12:39:17 [INFO] empirical_validation: Empirical sparsity scientific validation completed successfully. Certification status: PASSED.
+2026-07-22 12:39:17 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_validation_scie0/invalid_range.parquet
+2026-07-22 12:39:17 [ERROR] empirical_validation: Value range constraints violated: ["Column 'empirical_sparsity' range violation: 2 value(s) outside [0.0, 1.0] bounds. Observed range: [-0.5, 1.2]."]
+2026-07-22 12:39:17 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-44/test_empirical_validation_scie0/invalid_order.parquet
+2026-07-22 12:39:17 [ERROR] empirical_validation: Scientific anomaly: Mutation with count 10 has lower sparsity (0.1) than mutation with count 100 (0.9).
+2026-07-22 12:39:24 [INFO] empirical_validation: Initiating scientific validation on file: results/sparsity/empirical/empirical_sparsity.parquet
+2026-07-22 12:39:24 [INFO] empirical_validation: Empirical sparsity scientific validation completed successfully. Certification status: PASSED.
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 13:45:15 [WARNING] empirical_sparsity: Total observations count is zero. Defaulting frequencies to 0.0.
+2026-07-22 13:45:15 [ERROR] empirical_sparsity: Input file not found at: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_load_counts_validation_fa0/nonexistent.parquet
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_load_counts_validation_fa0/bad_cols.parquet
+2026-07-22 13:45:15 [ERROR] empirical_sparsity: Missing required column in input counts: 'mutation_id'
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_load_counts_validation_fa0/nulls.parquet
+2026-07-22 13:45:15 [ERROR] empirical_sparsity: Column 'experimental_ddg' contains 1 null/missing value(s).
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_load_counts_validation_fa0/dups.parquet
+2026-07-22 13:45:15 [ERROR] empirical_sparsity: Column 'mutation_id' contains 1 duplicate mutation ID(s).
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_sparsity_output0/counts.parquet
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Successfully loaded and validated 3 mutation records.
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Saving outputs to directory: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_sparsity_output0/results
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Wrote core parquet output: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_sparsity_output0/results/empirical_sparsity.parquet
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Wrote summary CSV: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_sparsity_output0/results/empirical_sparsity_summary.csv
+2026-07-22 13:45:15 [INFO] empirical_sparsity: Wrote distribution plot: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_sparsity_output0/results/empirical_distribution.png
+2026-07-22 13:45:15 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_sparsity_output0/results/empirical_sparsity.parquet
+2026-07-22 13:45:15 [INFO] empirical_validation: Empirical sparsity scientific validation completed successfully. Certification status: PASSED.
+2026-07-22 13:45:15 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_validation_scie0/invalid_range.parquet
+2026-07-22 13:45:15 [ERROR] empirical_validation: Value range constraints violated: ["Column 'empirical_sparsity' range violation: 2 value(s) outside [0.0, 1.0] bounds. Observed range: [-0.5, 1.2]."]
+2026-07-22 13:45:15 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-45/test_empirical_validation_scie0/invalid_order.parquet
+2026-07-22 13:45:15 [ERROR] empirical_validation: Scientific anomaly: Mutation with count 10 has lower sparsity (0.1) than mutation with count 100 (0.9).
+2026-07-22 13:45:20 [INFO] combined_sparsity: Initiating Combined Sparsity pipeline in mode: megascale_d
+2026-07-22 13:45:20 [INFO] combined_sparsity: Loading constituent sparsity datasets...
+2026-07-22 13:45:20 [INFO] schema_validator: Starting schema validation for dataset D102 at /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_megasca0/evo.parquet
+2026-07-22 13:45:20 [INFO] schema_validator: Validation report written to results/validation/schema_report.json
+2026-07-22 13:45:20 [INFO] schema_validator: Dataset schema certified successfully.
+2026-07-22 13:45:20 [INFO] dataset_loader: Successfully loaded and certified dataset D102 with 2 row(s).
+2026-07-22 13:45:20 [INFO] schema_validator: Starting schema validation for dataset D103 at /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_megasca0/struct.parquet
+2026-07-22 13:45:20 [INFO] schema_validator: Validation report written to results/validation/schema_report.json
+2026-07-22 13:45:20 [INFO] schema_validator: Dataset schema certified successfully.
+2026-07-22 13:45:20 [INFO] dataset_loader: Successfully loaded and certified dataset D103 with 2 row(s).
+2026-07-22 13:45:20 [INFO] schema_validator: Starting schema validation for dataset D101 at /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_megasca0/emp.parquet
+2026-07-22 13:45:20 [INFO] schema_validator: Validation report written to results/validation/schema_report.json
+2026-07-22 13:45:20 [INFO] schema_validator: Dataset schema certified successfully.
+2026-07-22 13:45:20 [INFO] dataset_loader: Successfully loaded and certified dataset D101 with 2 row(s).
+2026-07-22 13:45:20 [INFO] combined_sparsity: Wrote D104 Parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_megasca0/results/combined_sparsity.parquet
+2026-07-22 13:45:20 [INFO] combined_sparsity: Generating combined sparsity distribution histogram plot...
+2026-07-22 13:45:20 [INFO] combined_sparsity: Wrote combined distribution plot: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_megasca0/results/combined_sparsity_histogram.png
+2026-07-22 13:45:20 [INFO] combined_sparsity: Writing sparsity certification markdown report...
+2026-07-22 13:45:20 [INFO] combined_sparsity: Certification report saved: reports/sparsity_certification.md
+2026-07-22 13:45:20 [INFO] combined_validation: Initiating scientific validation on combined file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_megasca0/results/combined_sparsity.parquet (mode: megascale_d)
+2026-07-22 13:45:20 [INFO] combined_validation: Combined sparsity scientific validation completed successfully. Certification status: PASSED.
+2026-07-22 13:45:20 [INFO] combined_sparsity: Initiating Combined Sparsity pipeline in mode: tkt
+2026-07-22 13:45:20 [INFO] combined_sparsity: Loading constituent sparsity datasets...
+2026-07-22 13:45:20 [INFO] schema_validator: Starting schema validation for dataset D102 at /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_tkt_mod0/evo.parquet
+2026-07-22 13:45:20 [INFO] schema_validator: Validation report written to results/validation/schema_report.json
+2026-07-22 13:45:20 [INFO] schema_validator: Dataset schema certified successfully.
+2026-07-22 13:45:20 [INFO] dataset_loader: Successfully loaded and certified dataset D102 with 2 row(s).
+2026-07-22 13:45:20 [INFO] schema_validator: Starting schema validation for dataset D103 at /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_tkt_mod0/struct.parquet
+2026-07-22 13:45:20 [INFO] schema_validator: Validation report written to results/validation/schema_report.json
+2026-07-22 13:45:20 [INFO] schema_validator: Dataset schema certified successfully.
+2026-07-22 13:45:20 [INFO] dataset_loader: Successfully loaded and certified dataset D103 with 2 row(s).
+2026-07-22 13:45:20 [INFO] combined_sparsity: Wrote D104 Parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_tkt_mod0/results2/combined_sparsity.parquet
+2026-07-22 13:45:20 [INFO] combined_sparsity: Generating combined sparsity distribution histogram plot...
+2026-07-22 13:45:21 [INFO] combined_sparsity: Wrote combined distribution plot: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_tkt_mod0/results2/combined_sparsity_histogram.png
+2026-07-22 13:45:21 [INFO] combined_sparsity: Writing sparsity certification markdown report...
+2026-07-22 13:45:21 [INFO] combined_sparsity: Certification report saved: reports/sparsity_certification.md
+2026-07-22 13:45:21 [INFO] combined_validation: Initiating scientific validation on combined file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_sparsity_tkt_mod0/results2/combined_sparsity.parquet (mode: tkt)
+2026-07-22 13:45:21 [INFO] combined_validation: Combined sparsity scientific validation completed successfully. Certification status: PASSED.
+2026-07-22 13:45:21 [INFO] combined_validation: Initiating scientific validation on combined file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-46/test_combined_validation_failu0/bad_calc.parquet (mode: megascale_d)
+2026-07-22 13:45:21 [ERROR] combined_validation: Calculation audit mismatch for mutation mut1. Expected: 0.500000, Found: 0.800000.
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Loading mutation counts from parquet: data/raw/megascale_d/megascale_d.parquet
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Successfully loaded and validated 57 mutation records.
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Saving outputs to directory: results/sparsity/empirical
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Wrote core parquet output: results/sparsity/empirical/empirical_sparsity.parquet
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Wrote summary CSV: results/sparsity/empirical/empirical_sparsity_summary.csv
+2026-07-22 13:45:37 [INFO] empirical_sparsity: Wrote distribution plot: results/sparsity/empirical/empirical_distribution.png

@@ -241,53 +241,19 @@ class EmpiricalSparsity:
 
         return parquet_path, summary_path, plot_path
 
+    def write_output(self, df: pd.DataFrame, output_dir: str) -> Tuple[str, str, str]:
+        """Saves output parquet, summary CSV, and distribution plot.
 
-def main() -> None:
-    """Main command-line entry point for Empirical Sparsity framework."""
-    parser = argparse.ArgumentParser(
-        description="Compute empirical sparsity metrics from experimental counts."
-    )
-    parser.add_argument(
-        "--input",
-        type=str,
-        default="data/raw/megascale_d/megascale_d.parquet",
-        help="Path to Megascale-D mutation dataset parquet file.",
-    )
-    parser.add_argument(
-        "--output",
-        type=str,
-        default="results/empirical/",
-        help="Directory to save generated parquet, summary, and plot.",
-    )
-    parser.add_argument(
-        "--config",
-        type=str,
-        default="configs",
-        help="Path to application configuration folder.",
-    )
-    args = parser.parse_args()
+        Parameters
+        ----------
+        df : pd.DataFrame
+            Calculated empirical sparsity DataFrame.
+        output_dir : str
+            Directory path to save results.
 
-    print("Loading empirical sparsity calculation framework...")
-    try:
-        framework = EmpiricalSparsity(config_path=args.config)
-        counts_df = framework.load_counts(args.input)
-
-        print("Calculating frequencies and empirical sparsity...")
-        calculated_df = framework.calculate(counts_df)
-
-        print(f"Writing outputs to {args.output}...")
-        parquet, summary, plot = framework.generate_outputs(calculated_df, args.output)
-
-        print("\n--- Empirical Sparsity Executed Successfully ---")
-        print(f"Core Parquet: {parquet}")
-        print(f"Summary CSV:  {summary}")
-        print(f"Distribution: {plot}")
-        print("-------------------------------------------------")
-        print("Done")
-    except Exception as e:
-        print(f"ERROR: Empirical Sparsity Execution Failed: {e}", file=sys.stderr)
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
+        Returns
+        -------
+        Tuple[str, str, str]
+            Paths to generated parquet, summary CSV, and distribution plot.
+        """
+        return self.generate_outputs(df, output_dir)
