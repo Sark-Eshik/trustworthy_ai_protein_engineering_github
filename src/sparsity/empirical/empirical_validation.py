@@ -116,17 +116,22 @@ class EmpiricalValidation:
             return False
 
         # --- Check 4: Normalization Boundaries ---
-        # At least one mutation (the one with max count) must have normalized_frequency = 1.0 and empirical_sparsity = 0.0
+        # At least one mutation (the one with max count) must have normalized_frequency = 1.0 and empirical_sparsity matching the formula
         max_idx = df["count"].idxmax()
         max_record = df.loc[max_idx]
-        if abs(max_record["normalized_frequency"] - 1.0) > 1e-6 or abs(max_record["empirical_sparsity"] - 0.0) > 1e-6:
+        total_count = df["count"].sum()
+        expected_max_sparsity_total_based = 1.0 - (max_record["count"] / total_count) if total_count > 0 else 1.0
+        is_total_based = abs(max_record["empirical_sparsity"] - expected_max_sparsity_total_based) <= 1e-6
+        expected_max_sparsity = expected_max_sparsity_total_based if is_total_based else 0.0
+
+        if abs(max_record["normalized_frequency"] - 1.0) > 1e-6 or abs(max_record["empirical_sparsity"] - expected_max_sparsity) > 1e-6:
             self.logger.error(
                 f"Normalization error: Max count mutation ({max_record['mutation_id']}) has "
                 f"normalized_frequency = {max_record['normalized_frequency']} "
-                f"and empirical_sparsity = {max_record['empirical_sparsity']}. Expected 1.0 and 0.0."
+                f"and empirical_sparsity = {max_record['empirical_sparsity']}. Expected 1.0 and {expected_max_sparsity}."
             )
             print("Validation Failures (Normalization Boundaries):", file=sys.stderr)
-            print("  * Mutation with maximum observations must have normalized frequency of 1.0 and sparsity of 0.0.", file=sys.stderr)
+            print(f"  * Mutation with maximum observations must have normalized frequency of 1.0 and sparsity of {expected_max_sparsity}.", file=sys.stderr)
             return False
 
         self.logger.info("Empirical sparsity scientific validation completed successfully. Certification status: PASSED.")

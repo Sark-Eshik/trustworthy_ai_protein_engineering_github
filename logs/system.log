@@ -4878,3 +4878,28 @@
 2026-07-15 23:22:25 [INFO] killer_figure: Compiling Panel 8: Candidate Rankings...
 2026-07-15 23:22:28 [INFO] killer_figure: Flagship Killer Figure successfully generated and saved to /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-42/test_master_figure_runner0/test_figures/F9_killer_figure.png and /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-42/test_master_figure_runner0/test_figures/F9_killer_figure.pdf
 2026-07-15 23:22:28 [INFO] master_figure_runner: All publication-quality figures successfully compiled.
+2026-07-22 12:27:23 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:27:23 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 12:27:23 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:27:23 [WARNING] empirical_sparsity: Total observations count is zero. Defaulting frequencies to 0.0.
+2026-07-22 12:27:23 [ERROR] empirical_sparsity: Input file not found at: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_load_counts_validation_fa0/nonexistent.parquet
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_load_counts_validation_fa0/bad_cols.parquet
+2026-07-22 12:27:24 [ERROR] empirical_sparsity: Missing required column in input counts: 'mutation_id'
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_load_counts_validation_fa0/nulls.parquet
+2026-07-22 12:27:24 [ERROR] empirical_sparsity: Column 'experimental_ddg' contains 1 null/missing value(s).
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_load_counts_validation_fa0/dups.parquet
+2026-07-22 12:27:24 [ERROR] empirical_sparsity: Column 'mutation_id' contains 1 duplicate mutation ID(s).
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Loading mutation counts from parquet: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_sparsity_output0/counts.parquet
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Successfully loaded and validated 3 mutation records.
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Calculating empirical sparsity...
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Empirical sparsity calculation completed successfully.
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Saving outputs to directory: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_sparsity_output0/results
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Wrote core parquet output: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_sparsity_output0/results/empirical_sparsity.parquet
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Wrote summary CSV: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_sparsity_output0/results/empirical_sparsity_summary.csv
+2026-07-22 12:27:24 [INFO] empirical_sparsity: Wrote distribution plot: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_sparsity_output0/results/empirical_distribution.png
+2026-07-22 12:27:24 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_sparsity_output0/results/empirical_sparsity.parquet
+2026-07-22 12:27:24 [INFO] empirical_validation: Empirical sparsity scientific validation completed successfully. Certification status: PASSED.
+2026-07-22 12:27:24 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_validation_scie0/invalid_range.parquet
+2026-07-22 12:27:24 [ERROR] empirical_validation: Value range constraints violated: ["Column 'empirical_sparsity' range violation: 2 value(s) outside [0.0, 1.0] bounds. Observed range: [-0.5, 1.2]."]
+2026-07-22 12:27:24 [INFO] empirical_validation: Initiating scientific validation on file: /private/var/folders/8l/19pyn9zn77b0bn_qbw6mhfp80000gn/T/pytest-of-ryansarkeshik/pytest-43/test_empirical_validation_scie0/invalid_order.parquet
+2026-07-22 12:27:24 [ERROR] empirical_validation: Scientific anomaly: Mutation with count 10 has lower sparsity (0.1) than mutation with count 100 (0.9).

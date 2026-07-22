@@ -34,10 +34,13 @@ def test_empirical_sparsity_calculation():
     assert np.isclose(res.loc[res["mutation_id"] == "mutB", "normalized_frequency"].values[0], 1000 / 1000)
     assert np.isclose(res.loc[res["mutation_id"] == "mutC", "normalized_frequency"].values[0], 100 / 1000)
 
-    # Check empirical sparsity: 1.0 - normalized frequency
-    assert np.isclose(res.loc[res["mutation_id"] == "mutA", "empirical_sparsity"].values[0], 1.0 - 0.01)
-    assert np.isclose(res.loc[res["mutation_id"] == "mutB", "empirical_sparsity"].values[0], 0.0)
-    assert np.isclose(res.loc[res["mutation_id"] == "mutC", "empirical_sparsity"].values[0], 1.0 - 0.1)
+    # Check empirical sparsity: 1.0 - count / total_observations
+    assert np.isclose(res.loc[res["mutation_id"] == "mutA", "empirical_sparsity"].values[0], 1.0 - 10 / 1110)
+    assert np.isclose(res.loc[res["mutation_id"] == "mutB", "empirical_sparsity"].values[0], 1.0 - 1000 / 1110)
+    assert np.isclose(res.loc[res["mutation_id"] == "mutC", "empirical_sparsity"].values[0], 1.0 - 100 / 1110)
+
+    # Check sparsity column matches empirical_sparsity
+    assert (res["sparsity"] == res["empirical_sparsity"]).all()
 
 
 def test_empirical_sparsity_zero_total_observations():
@@ -63,42 +66,54 @@ def test_load_counts_validation_failures(tmp_path):
 
     # 1. Non-existent file
     with pytest.raises(FileNotFoundError):
-        framework.load_counts(os.path.join(tmp_path, "nonexistent.csv"))
+        framework.load_counts(os.path.join(tmp_path, "nonexistent.parquet"))
 
     # 2. Missing required columns
-    bad_cols_path = os.path.join(tmp_path, "bad_cols.csv")
-    pd.DataFrame({"mut_id": ["A"], "cnt": [5]}).to_csv(bad_cols_path, index=False)
+    bad_cols_path = os.path.join(tmp_path, "bad_cols.parquet")
+    pd.DataFrame({"mut_id": ["A"], "cnt": [5]}).to_parquet(bad_cols_path, index=False)
     with pytest.raises(ValueError, match="Missing required column"):
         framework.load_counts(bad_cols_path)
 
     # 3. Contains null values
-    nulls_path = os.path.join(tmp_path, "nulls.csv")
-    pd.DataFrame({"mutation_id": ["A", "B"], "count": [5, None]}).to_csv(nulls_path, index=False)
+    nulls_path = os.path.join(tmp_path, "nulls.parquet")
+    pd.DataFrame({
+        "mutation_id": ["A", "B"],
+        "protein_id": ["P1", "P1"],
+        "position": [1, 2],
+        "wildtype": ["A", "G"],
+        "mutant": ["C", "T"],
+        "experimental_ddg": [1.5, None],
+    }).to_parquet(nulls_path, index=False)
     with pytest.raises(ValueError, match="contains.*null"):
         framework.load_counts(nulls_path)
 
     # 4. Duplicate mutation_id keys
-    dups_path = os.path.join(tmp_path, "dups.csv")
-    pd.DataFrame({"mutation_id": ["A", "A"], "count": [5, 10]}).to_csv(dups_path, index=False)
+    dups_path = os.path.join(tmp_path, "dups.parquet")
+    pd.DataFrame({
+        "mutation_id": ["A", "A"],
+        "protein_id": ["P1", "P1"],
+        "position": [1, 1],
+        "wildtype": ["A", "A"],
+        "mutant": ["C", "C"],
+        "experimental_ddg": [1.5, 2.0],
+    }).to_parquet(dups_path, index=False)
     with pytest.raises(ValueError, match="duplicate"):
         framework.load_counts(dups_path)
-
-    # 5. Negative count values
-    neg_path = os.path.join(tmp_path, "neg.csv")
-    pd.DataFrame({"mutation_id": ["A", "B"], "count": [10, -5]}).to_csv(neg_path, index=False)
-    with pytest.raises(ValueError, match="negative mutation count"):
-        framework.load_counts(neg_path)
 
 
 def test_empirical_sparsity_outputs_and_certification(tmp_path):
     """Test output serialization, file generation, and scientific certification."""
-    counts_path = os.path.join(tmp_path, "counts.csv")
+    counts_path = os.path.join(tmp_path, "counts.parquet")
     pd.DataFrame(
         {
             "mutation_id": ["mut1", "mut2", "mut3"],
-            "count": [10, 100, 1000],
+            "protein_id": ["P1", "P1", "P1"],
+            "position": [1, 2, 3],
+            "wildtype": ["A", "G", "C"],
+            "mutant": ["C", "T", "G"],
+            "experimental_ddg": [1.5, 0.5, -0.5],
         }
-    ).to_csv(counts_path, index=False)
+    ).to_parquet(counts_path, index=False)
 
     # Run complete pipeline
     framework = EmpiricalSparsity()
@@ -120,6 +135,7 @@ def test_empirical_sparsity_outputs_and_certification(tmp_path):
     assert "mutation_frequency" in df_loaded.columns
     assert "normalized_frequency" in df_loaded.columns
     assert "empirical_sparsity" in df_loaded.columns
+    assert "sparsity" in df_loaded.columns
 
     # Verify that validation engine certifies the generated file
     validator = EmpiricalValidation()

@@ -45,56 +45,60 @@ class EmpiricalSparsity:
         )
 
     def load_counts(self, input_path: str) -> pd.DataFrame:
-        """Loads and validates the raw mutation counts.
+        """Loads and validates the Megascale-D raw mutation counts from parquet.
 
         Parameters
         ----------
         input_path : str
-            Absolute or relative path to the mutation_counts.csv file.
+            Absolute or relative path to the megascale_d.parquet file.
 
         Returns
         -------
         pd.DataFrame
-            Validated DataFrame containing columns: mutation_id, count.
+            Validated DataFrame containing columns: mutation_id, count, sparsity, and Megascale-D columns.
 
         Raises
         ------
         FileNotFoundError
             If input_path does not exist.
         ValueError
-            If validation fails (missing columns, duplicate keys, nulls, negative counts).
+            If validation fails.
         """
         if not os.path.exists(input_path):
             self.logger.error(f"Input file not found at: {input_path}")
             raise FileNotFoundError(f"Input file not found at: {input_path}")
 
-        self.logger.info(f"Loading mutation counts from: {input_path}")
-        df = pd.read_csv(input_path)
+        self.logger.info(f"Loading mutation counts from parquet: {input_path}")
+        df = pd.read_parquet(input_path)
 
-        # 1. Check Required Columns
-        required_cols = ["mutation_id", "count"]
+        # Megascale-D required columns
+        required_cols = ["mutation_id", "protein_id", "position", "wildtype", "mutant", "experimental_ddg"]
         for col in required_cols:
             if col not in df.columns:
                 err_msg = f"Missing required column in input counts: '{col}'"
                 self.logger.error(err_msg)
                 raise ValueError(err_msg)
 
-        # 2. Check for Nulls
-        for col in required_cols:
+        # Derive empirical counts from experimental_ddg using: df["count"] = np.exp(-1.0 * df["experimental_ddg"])
+        df["count"] = np.exp(-1.0 * df["experimental_ddg"])
+
+        # Check for Nulls
+        check_cols = required_cols + ["count"]
+        for col in check_cols:
             null_count = df[col].isnull().sum()
             if null_count > 0:
                 err_msg = f"Column '{col}' contains {null_count} null/missing value(s)."
                 self.logger.error(err_msg)
                 raise ValueError(err_msg)
 
-        # 3. Check for Duplicate Mutation IDs
+        # Check for Duplicate Mutation IDs
         if df["mutation_id"].duplicated().any():
             num_duplicates = df["mutation_id"].duplicated().sum()
             err_msg = f"Column 'mutation_id' contains {num_duplicates} duplicate mutation ID(s)."
             self.logger.error(err_msg)
             raise ValueError(err_msg)
 
-        # 4. Check for Negative Counts
+        # Check for Negative Counts
         negative_counts = df[df["count"] < 0]
         if not negative_counts.empty:
             num_violations = len(negative_counts)
@@ -127,7 +131,7 @@ class EmpiricalSparsity:
         -------
         pd.DataFrame
             DataFrame containing all required fields:
-            mutation_id, count, frequency, mutation_frequency, normalized_frequency, empirical_sparsity.
+            mutation_id, count, frequency, mutation_frequency, normalized_frequency, empirical_sparsity, sparsity.
         """
         self.logger.info("Calculating empirical sparsity...")
         df = counts_df.copy()
@@ -141,6 +145,7 @@ class EmpiricalSparsity:
             df["frequency"] = 0.0
             df["mutation_frequency"] = 0.0
             df["normalized_frequency"] = 0.0
+            df["sparsity"] = 1.0
             df["empirical_sparsity"] = 1.0
             return df
 
@@ -155,8 +160,9 @@ class EmpiricalSparsity:
         else:
             df["normalized_frequency"] = df["count"] / max_count
 
-        # Empirical Sparsity = 1 - Normalized Frequency
-        df["empirical_sparsity"] = 1.0 - df["normalized_frequency"]
+        # Compute sparsity (Megascale-D requested df["sparsity"] = 1 - (df["count"] / total))
+        df["sparsity"] = 1.0 - (df["count"] / total_observations)
+        df["empirical_sparsity"] = df["sparsity"]
 
         self.logger.info("Empirical sparsity calculation completed successfully.")
         return df
@@ -194,6 +200,7 @@ class EmpiricalSparsity:
             "mutation_frequency",
             "normalized_frequency",
             "empirical_sparsity",
+            "sparsity",
         ]
         df[d101_cols].to_parquet(parquet_path, index=False)
         self.logger.info(f"Wrote core parquet output: {parquet_path}")
@@ -243,8 +250,8 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="data/raw/empirical/mutation_counts.csv",
-        help="Path to raw mutation count CSV file.",
+        default="data/raw/megascale_d/megascale_d.parquet",
+        help="Path to Megascale-D mutation dataset parquet file.",
     )
     parser.add_argument(
         "--output",
