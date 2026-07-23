@@ -32,6 +32,25 @@ conda env create -f environment.yml
 conda activate trustworthy_ai
 ```
 
+## Environment Setup
+
+### Conda Setup
+
+To set up the development environment using Conda:
+
+```bash
+conda env create -f environment.yml
+conda activate trustworthy_ai_protein_engineering
+```
+
+### Pip Setup
+
+To set up the dependencies using pip:
+
+```bash
+pip install -r requirements.txt
+```
+
 ### Initial Certification
 
 Run the project bootstrap script to verify directory trees, map environment profiles, and verify all structural dependencies:
